@@ -1,0 +1,14 @@
+{
+  "name": "adamczyk-ms",
+  "version": "1.0.0",
+  "description": "Adamczyk's microservices (policemen, scaleOfCharges, drivingLicences)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adamczyk Lukasz",
+  "license": "ISC",
+  "dependencies": {
+    "mongo": "^0.1.0"
+  }
+}
