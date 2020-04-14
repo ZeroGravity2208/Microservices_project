@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  h1= title
+
+  form(method='post')
+    p
+      label Imię
+      br
+      input(type='text' name='imie')
+
+    p
+      label Nazwisko
+      br
+      input(type='text' name='nazwisko')
+      
+    p
+      label Numer identyfikacyjny
+      br
+      input(type='text' name='nr_identyfikacyjny')
+      
+    p
+      label Numer legitymacji
+      br
+      input(type='text' name='nr_legitymacji')
+        
+    p
+      label Stopień
+      br
+      input(type='text' name='stopien')
+    p
+      input(type='submit' value='Zapisz policjanta')
+      
