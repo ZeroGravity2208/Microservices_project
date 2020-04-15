@@ -3,8 +3,11 @@ Projekt, który realizujemy dla przedmiotu Środowisko oprogramowania kompononto
 
 # Microservice Policemen
 [Plik app.js z endpointami](https://github.com/ZeroGravity2208/Microservices_project/blob/first-microservice-adamczyk/Lukasz/ms1-policemen/app.js)
+
 [Plik controller.js (na razie nic nie robi i jest pusty)](https://github.com/ZeroGravity2208/Microservices_project/blob/first-microservice-adamczyk/Lukasz/ms1-policemen/controller.js)
+
 [Plik service.js (na tę chwilę sprawdza tylko proces pobierania jednego policjanta - sprawdza czy istnieje takie id)](https://github.com/ZeroGravity2208/Microservices_project/blob/first-microservice-adamczyk/Lukasz/ms1-policemen/service.js)
+
 [Plik DAL.js (proste zapytania do bazy danych)](https://github.com/ZeroGravity2208/Microservices_project/blob/first-microservice-adamczyk/Lukasz/ms1-policemen/DAL.js)
 
 Docelowo ma to wyglądać tak: plik app.js wystawia endpointy. Załóżmy, że użytkownik chce dostać dane konkretnego policjanta:
