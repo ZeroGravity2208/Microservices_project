@@ -2,7 +2,7 @@
 Projekt, który realizujemy dla przedmiotu Środowisko oprogramowania komponontowego II
 
 # Microservice Policemen
-[Plik app.js z endpointami](https://github.com/ZeroGravity2208/Microservices_project/blob/first-microservice-adamczyk/Lukasz/ms1-policemen/app.js)
+[Plik api.js z endpointami](https://github.com/ZeroGravity2208/Microservices_project/blob/first-microservice-adamczyk/Lukasz/ms1-policemen/routes/api.js)
 
 [Plik controller.js (na razie nic nie robi i jest pusty)](https://github.com/ZeroGravity2208/Microservices_project/blob/first-microservice-adamczyk/Lukasz/ms1-policemen/controller.js)
 
