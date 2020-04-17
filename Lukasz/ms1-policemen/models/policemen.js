@@ -15,7 +15,7 @@ const policemenSchema = new Schema({
     required: [true, 'Nr identyfikacyjny jest wymagany'],
   },
   nr_legitymacji: {
-    type: Number,
+    type: String,
     required: [true, 'Nr legitymacji jest wymagany'],
   },
   stopien: {
@@ -23,7 +23,7 @@ const policemenSchema = new Schema({
     required: [true, 'Stopień jest wymagany'],
   },
   data_waznosci_legitymacji: {
-    type: Date,
+    type: String,
     default: Date.now,
   },
 })

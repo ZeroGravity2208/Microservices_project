@@ -13,7 +13,7 @@ router.get('/policemen', (req, res) => {
 router.get('/policeman/get/:id', (req, res) => {
   // DAL.getPoliceman(data => res.json(data), req.params.id);
   // service.getPoliceman(data => res.json(data), req.params.id);
-  controller.getPoliceman(data => res.json(data), req.params.id);
+  controller.getPoliceman((data, status) => res.status(status).json(data), req.params.id);
 });
 
 router.get('/policeman/add', (req, res) => {
@@ -23,12 +23,13 @@ router.get('/policeman/add', (req, res) => {
 });
 
 router.post('/policeman/add', (req, res) => {
-  controller.postPoliceman(data => res.json(data), req.body)
+  controller.postPoliceman((data, status) => res.status(status).json(data), req.body)
 })
 
-router.get('/policeman/update', (req, res) => {
-  DAL.patchPoliceman(data => res.json(data), req.body);
+router.patch('/policeman/update/:id', (req, res) => {
+  controller.patchPoliceman(data => res.json(data), req.params.id)
 })
+
 
 router.delete('/policeman/delete/:id', (req, res) => {
   DAL.deletePoliceman(data => res.json(data), req.params.id)

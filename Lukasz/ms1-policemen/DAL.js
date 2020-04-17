@@ -2,6 +2,10 @@ const Policemen = require('./models/policemen');
 
 const getPolicemen = callback => {
   Policemen.find({}).exec((err, data) => {
+    if (err) {
+      callback('_błąd')
+      return
+    }
     callback(data);
   })
 }
@@ -26,33 +30,49 @@ const deletePoliceman = (callback, id) => {
 
 const postPoliceman = (callback, body) => {
   const policemenData = new Policemen(body);
-
+  const dateParts = body.data_waznosci_legitymacji.split("-");
+  const dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+  body.data_waznosci_legitymacji = dateObject;
   policemenData.save(err => {
     if (err) {
-      callback('error', err)
+      callback({
+        'status': 'Internal Server Error'
+      }, 500);
       return
     }
-    callback('_added');
+    callback({
+      'status': 'Created'
+    }, 201);
   })
 }
 
-const patchPoliceman = (callback) => {
-  const id = '5e95be7d993a1939701117d5'
-
-
+const patchPoliceman = (callback, body, id) => {
+  const {
+    imie,
+    nazwisko,
+    nr_identyfikacyjny,
+    nr_legitymacji,
+    stopien,
+    data_waznosci_legitymacji
+  } = body;
   Policemen.findOneAndUpdate({
     _id: id
   }, {
     $set: {
-      imie: "nowe_imie"
+      imie: imie,
+      nazwisko: nazwisko,
+      nr_identyfikacyjny: nr_identyfikacyjny,
+      nr_legitymacji: nr_legitymacji,
+      stopien: stopien,
+      data_waznosci_legitymacji: data_waznosci_legitymacji,
     }
   }, {
     new: true
   }, (err, doc) => {
     if (err) {
-      callback('error')
+      callback('error', 500)
     }
-    callback('zrobione')
+    callback('zrobione', 201)
   });
 }
 

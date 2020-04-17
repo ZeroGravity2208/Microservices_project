@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
 
-  form(method='post')
+  form(method='patch')
     p
       label Imię
       br
@@ -33,5 +33,5 @@ block content
       br
       input(type='text' name='data_waznosci_legitymacji')
     p
-      input(type='submit' value='Zapisz policjanta')
+      input(type='submit' value='Update policjanta')
       
