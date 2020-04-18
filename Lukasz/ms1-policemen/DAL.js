@@ -46,8 +46,9 @@ const postPoliceman = (callback, body) => {
   })
 }
 
-const patchPoliceman = (callback, body, id) => {
+const patchPoliceman = (callback, body) => {
   const {
+    id,
     imie,
     nazwisko,
     nr_identyfikacyjny,

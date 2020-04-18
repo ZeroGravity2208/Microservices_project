@@ -16,7 +16,7 @@ const validateData = (body, callback) => {
   let isReturn = 0;
   let myError = {};
   console.log(body)
-  if (!body) {
+  if (!body || body === undefined) {
     callback([{
       'errNoData': 'Nie podałeś żadnych danych!'
     }, 1])
@@ -31,13 +31,17 @@ const validateData = (body, callback) => {
     data_waznosci_legitymacji
   } = body;
 
+  if (!imie || !nazwisko || !nr_identyfikacyjny || !nr_legitymacji || !stopien || !data_waznosci_legitymacji ||
+    imie === undefined || nazwisko === undefined || nr_identyfikacyjny === undefined || nr_legitymacji === undefined || stopien === undefined || data_waznosci_legitymacji === undefined) {
+
+    callback([{
+      'errNoData': 'Nie podałeś wszystkich danych!'
+    }, 1])
+    return
+
+  };
 
   const dateParts = data_waznosci_legitymacji.split("-");
-
-  if (!body || !imie || !nazwisko || !nr_identyfikacyjny || !nr_legitymacji || !stopien || !data_waznosci_legitymacji) {
-    myError.err = "Nie uzupełniłeś wszystkich pól!";
-    isReturn = 1;
-  };
 
   if (imie.length < 3) {
     myError.errName = 'Imie musi mieć co najmniej 3 znaki!'
@@ -153,9 +157,9 @@ const postPoliceman = (callback, body) => {
 
 }
 
-const patchPoliceman = (callback, id, body) => {
+const patchPoliceman = (callback, body) => {
   console.log(body)
-  if (typeof (id) !== 'string' || id.length !== 24) {
+  if (typeof (body.id) !== 'string' || body.id.length !== 24) {
     callback({
       error: 'Id jest liczbą szesnastkową o długości 24 znaków'
     }, 400)
@@ -170,6 +174,17 @@ const patchPoliceman = (callback, id, body) => {
   })
 }
 
+const deletePoliceman = (callback, id) => {
+  if (typeof (id) !== 'string' || id.length !== 24) {
+    callback({
+      error: 'Id jest liczbą szesnastkową o długości 24 znaków'
+    }, 400)
+    return;
+  }
+  service.deletePoliceman((data, status) => callback(data, status), id)
+}
+
 module.exports.getPoliceman = getPoliceman;
 module.exports.postPoliceman = postPoliceman;
 module.exports.patchPoliceman = patchPoliceman;
+module.exports.deletePoliceman = deletePoliceman;

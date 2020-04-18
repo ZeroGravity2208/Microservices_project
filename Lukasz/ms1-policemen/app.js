@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var config = require('./config');
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 
 mongoose.connect(config.dbURL, {
   useUnifiedTopology: true,
@@ -16,7 +17,6 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
 var apiRouter = require('./routes/api');
 
@@ -33,6 +33,22 @@ app.use(express.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+app.use(bodyParser.json());
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  );
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+    return res.status(200).json({});
+  }
+  next();
+});
 
 app.use('/', indexRouter);
 app.use('/api', apiRouter);

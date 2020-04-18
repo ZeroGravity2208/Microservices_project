@@ -3,7 +3,11 @@ extends layout
 block content
   h1= title
 
-  form(method='patch')
+  form(action='/api/policeman/update' method='post')
+    p
+      label Podaj ID policjanta
+      br
+      input(type='text' name='id')
     p
       label Imię
       br
