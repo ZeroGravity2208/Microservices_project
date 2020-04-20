@@ -1,4 +1,5 @@
 const service = require('./service');
+const DAL = require('./DAL');
 
 const policeRanks = ['posterunkowy', 'starszy posterunkowy', 'sierżant', 'starszy sierżant', 'sierżant sztabowy', 'młodszy aspirant', 'aspirant', 'starszy aspirant', 'aspirant sztabowy', 'podkomisarz', 'komisarz', 'nadkomisarz', 'podinspektor', 'młodszy inspektor', 'inspektor', 'nadinspektor', 'generalny inspektor'];
 
@@ -15,7 +16,7 @@ const getPoliceman = (callback, id) => {
 const validateData = (body, callback) => {
   let isReturn = 0;
   let myError = {};
-  console.log(body)
+  console.log('valid', body)
   if (!body || body === undefined) {
     callback([{
       'errNoData': 'Nie podałeś żadnych danych!'
@@ -58,7 +59,8 @@ const validateData = (body, callback) => {
     isReturn = 1;
   }
 
-  if (nr_identyfikacyjny.length !== 6) {
+  if (nr_identyfikacyjny.toString().length !== 6) {
+    console.log(nr_identyfikacyjny.length)
     myError.errIdNo_2 = 'Nr identyfikacyjny jest sześciocyfrowy!';
     isReturn = 1;
   }
@@ -158,19 +160,58 @@ const postPoliceman = (callback, body) => {
 }
 
 const patchPoliceman = (callback, body) => {
-  console.log(body)
+  // console.log(body)
   if (typeof (body.id) !== 'string' || body.id.length !== 24) {
     callback({
       error: 'Id jest liczbą szesnastkową o długości 24 znaków'
     }, 400)
     return;
   }
-  validateData(body, data => {
-    if (data[1]) {
-      callback(data[0], 400);
+
+  DAL.getPolicemen(data => {
+    const policemanByTheId = data.find(policeman => {
+      return policeman.id == body.id;
+    })
+    console.log('dal', policemanByTheId);
+
+    if (policemanByTheId === undefined) {
+      callback({
+        errNoPolicemen: "Nie policjanta z takim id!"
+      }, 404);
       return;
+    } else {
+      if (body.imie === undefined || body.imie == "") {
+        body.imie = policemanByTheId.imie;
+      }
+
+      if (body.nazwisko === undefined || body.nazwisko == "") {
+        body.nazwisko = policemanByTheId.nazwisko;
+      }
+
+      if (body.nr_identyfikacyjny === undefined || body.nr_identyfikacyjny == "") {
+        body.nr_identyfikacyjny = policemanByTheId.nr_identyfikacyjny;
+      }
+
+      if (body.nr_legitymacji === undefined || body.nr_legitymacji == "") {
+        body.nr_legitymacji = policemanByTheId.nr_legitymacji;
+      }
+
+      if (body.stopien === undefined || body.stopien == "") {
+        body.stopien = policemanByTheId.stopien;
+      }
+
+      if (body.data_waznosci_legitymacji === undefined || body.data_waznosci_legitymacji == "") {
+        body.data_waznosci_legitymacji = policemanByTheId.data_waznosci_legitymacji;
+      }
     }
-    service.patchPoliceman((data, status) => callback(data, status), body)
+
+    validateData(body, data => {
+      if (data[1]) {
+        callback(data[0], 400);
+        return;
+      }
+      service.patchPoliceman((data, status) => callback(data, status), body)
+    })
   })
 }
 

@@ -2,11 +2,13 @@ DELETE http://localhost:3000/api/policeman/delete/5e95c1357545d4404402312b
 
 ###
 
-PATCH  http://localhost:3000/api/policeman/update/5e95c1357545d4404402312d
+PUT  http://localhost:3000/api/policeman/update
+Content-Type: application/json
 
 {
-    "imie": "sample",
-    "nazwisko": "jdfldgf"
+  "id": "5e9b6b24def79f001736fbec",
+    "nazwisko": "Jakubow",
+    "stopien": "inspektor"
 }
 
 ###
