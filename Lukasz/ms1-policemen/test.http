@@ -1,0 +1,25 @@
+DELETE http://localhost:3000/api/policeman/delete/5e95c1357545d4404402312b
+
+###
+
+PUT  http://localhost:3000/api/policeman/update
+Content-Type: application/json
+
+{
+  "id": "5e9b6b24def79f001736fbec",
+    "nazwisko": "Jakubow",
+    "stopien": "inspektor"
+}
+
+###
+
+POST http://localhost:3000/api/policeman/add
+
+{
+  "imie": "Maciej",
+  "nazwisko": "maciej",
+  "nr_identyfikacyjny": "123222",
+  "nr_legitymacji": "123123ABC",
+  "stopien": "sierżant",
+  "data_waznosci_legitymacji": "29-04-2000"
+}

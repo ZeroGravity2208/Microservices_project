@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  h1= title
+
+  form(action='/api/policeman/update' method='post')
+    p
+      label Podaj ID policjanta
+      br
+      input(type='text' name='id')
+    p
+      label Imię
+      br
+      input(type='text' name='imie')
+
+    p
+      label Nazwisko
+      br
+      input(type='text' name='nazwisko')
+      
+    p
+      label Numer identyfikacyjny
+      br
+      input(type='text' name='nr_identyfikacyjny')
+      
+    p
+      label Numer legitymacji
+      br
+      input(type='text' name='nr_legitymacji')
+        
+    p
+      label Stopień
+      br
+      input(type='text' name='stopien')
+    p
+      label Data ważności legitymacji
+      br
+      input(type='text' name='data_waznosci_legitymacji')
+    p
+      input(type='submit' value='Update policjanta')
+      
