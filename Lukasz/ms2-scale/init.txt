@@ -1,4 +1,0 @@
-initial commit
-2nd microservice - scale (taryfikator)
-some changes
-more changes
