@@ -45,7 +45,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/", indexRouter);
-console.log("tutaj");
+// console.log("tutaj");
 app.use("/api", apiRouter);
 
 // catch 404 and forward to error handler

@@ -1,0 +1,25 @@
+DELETE http://localhost:3000/api/scale/delete/5eb98a7a40045c310827471e
+
+###
+
+PUT  http://localhost:3000/api/scale/update
+Content-Type: application/json
+
+{
+  "id": "5eb98a7a40045c310827471e",
+  "desc": "nowa tresc tej wiadomosci",
+  "maxFine": "9000"
+}
+
+###
+
+POST http://localhost:3000/api/scale/add
+Content-Type: application/json
+
+{
+  "desc": "Tutaj jakis opis",
+  "minPenaltyPoints": "0",
+  "maxPenaltyPoints": "10",
+  "minFine": "1000",
+  "maxFine": "10000"
+}
