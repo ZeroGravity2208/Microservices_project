@@ -113,6 +113,8 @@ const deleteScale = (callback, id) => {
 
 module.exports.getScales = getScales;
 module.exports.getScale = getScale;
+
 module.exports.postScale = postScale;
 module.exports.putScale = putScale;
+
 module.exports.deleteScale = deleteScale;

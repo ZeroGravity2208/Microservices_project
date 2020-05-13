@@ -6,9 +6,10 @@ PUT  http://localhost:3000/api/scale/update
 Content-Type: application/json
 
 {
-  "id": "5eb98a7a40045c310827471e",
+  "id": "5ebc23d53b8e895e507b1d23",
   "desc": "nowa tresc tej wiadomosci",
-  "maxFine": "9000"
+  "minFine": "190",
+  "minPenaltyPoints": "2"
 }
 
 ###
@@ -17,9 +18,17 @@ POST http://localhost:3000/api/scale/add
 Content-Type: application/json
 
 {
-  "desc": "Tutaj jakis opis",
+  "desc": "Opis nowego wykroczenia",
   "minPenaltyPoints": "0",
   "maxPenaltyPoints": "10",
-  "minFine": "1000",
-  "maxFine": "10000"
+  "minFine": "50",
+  "maxFine": "200"
 }
+
+###
+
+GET http://localhost:3000/api/scale/5ebc23d53b8e895e507b1d23
+
+###
+
+GET http://localhost:3000/api/scales
