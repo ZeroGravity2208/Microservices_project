@@ -3,10 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb+srv://Zakrevskyi:german110@german110-t5ihr.mongodb.net/Microservice?retryWrites=true&w=majority', {
+  useUnifiedTopology: true,
+  useNewUrlParser: true
+});
 
 var indexRouter = require('./routes/index');
-
-
 var app = express();
 
 // view engine setup
@@ -37,7 +41,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send('error');
 });
 
 module.exports = app;

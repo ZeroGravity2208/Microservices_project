@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET home page. */
-router.get('/', (req, res, next) => {
-  res.send('Witaj w Api')
+const DAL = require('../DAL')
+router.get('/', (req, res) => {
+  DAL.zapusk_mashin((data, status) => res.status(status).json(data))
 });
 
 module.exports = router;
