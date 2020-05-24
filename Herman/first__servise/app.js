@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 
 mongoose.connect('mongodb+srv://Zakrevskyi:german110@german110-t5ihr.mongodb.net/Microservice?retryWrites=true&w=majority', {
   useUnifiedTopology: true,
@@ -22,6 +23,18 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: false
 }));
+
+app.use(bodyParser.json());
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET')
+    return res.status(200).json({})
+  }
+  next()
+});
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

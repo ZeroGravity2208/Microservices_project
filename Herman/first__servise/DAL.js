@@ -1,6 +1,6 @@
-const Cars = require('./models/cars')
+const Car = require('./models/cars')
 
-const zapusk_mashin = callback => {
+const add_car = (callback, body) => {
     // Cars.find('').exec((error, data) => {
     //     if (error) {
     //         callback('404');
@@ -8,14 +8,7 @@ const zapusk_mashin = callback => {
     //     }
     //     callback(data, 200)
     // })
-    const carData = new Cars({
-        id_marki: '123',
-        id_modelu: '123',
-        kolor: '123',
-        nr_rejestracyjny: '123',
-        wlasciciel: '123',
-        czy_wypadek: true
-    });
+    const carData = new Car(body);
     carData.save((err) => {
         if (err) {
             callback({
@@ -33,4 +26,4 @@ const zapusk_mashin = callback => {
     });
 };
 
-module.exports.zapusk_mashin = zapusk_mashin;
+module.exports.add_car = add_car;
